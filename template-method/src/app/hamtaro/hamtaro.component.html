@@ -1,4 +1,19 @@
 
-<p>
-  hamtaro works!
-</p>
+<div>
+  <p>
+    Bienvenue chez Hamtaro!
+  </p>
+  <p>
+    Bonheur de Hamtaro: {{ state }}
+  </p>
+</div>
+
+<img height="300px" src="{{ imagePath }}" />
+
+<div>
+  {{ moodMessage }}
+</div>
+
+<div>
+  <button (click) = "onCheckHamtaroState()"> Consulter </button>
+</div>
