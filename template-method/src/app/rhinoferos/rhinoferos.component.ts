@@ -18,6 +18,12 @@ export class RhinoferosComponent extends AbstractCreatureComponent implements On
     '../../../assets/RhinPixel.jpg'
   ];
 
+  moodMessages = [ 
+    'Rhinoferos a gagné son combat de boxe',
+    'Rhinoferos part en pause clope',
+    'Rhinoferos a perdu son combat de boxe'
+  ]
+
   constructor() {
     super();
   }

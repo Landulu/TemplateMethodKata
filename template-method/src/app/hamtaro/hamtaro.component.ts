@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { AbstractCreatureComponent } from '../abstract/AbstractCreatureComponent';
 import { CreatureService } from '../services/creatures.service';
 
@@ -20,8 +20,21 @@ export class HamtaroComponent extends AbstractCreatureComponent implements OnIni
     '../../../assets/HamtaroSad.jpeg'
   ];
 
+  moodMessages = [ 
+    'Hamtaro a bien mangé',
+    'Hamtaro en prends bonne note',
+    'Quelqu\'un a parlé de RGPD à Hamtaro'
+  ]
 
-  constructor(private creatureService: CreatureService) {
+  colors = [
+    '#CBFFC0',
+    '#FEF1B9',
+    '#FFC0CB'
+  ];
+
+
+  constructor(private creatureService: CreatureService,
+    private elementRef: ElementRef) {
     super();
   }
 
@@ -35,7 +48,6 @@ export class HamtaroComponent extends AbstractCreatureComponent implements OnIni
       this.initState();
     } else {
       
-      console.log(storedState);
       const newState = this.creatureService.getState(this.creatureName);
       if (storedState > newState) {
         this.onStateImproving();
@@ -56,16 +68,22 @@ export class HamtaroComponent extends AbstractCreatureComponent implements OnIni
 
   onStageStagnation() {
     this.setImage(1);
+    this.setMoodMessage(1);
+    this.setMoodColor(1);
   }
-
+  
   onStateWorsen() {
     this.setImage(2);
+    this.setMoodMessage(2);
+    this.setMoodColor(1);
   }
-
+  
   onStateImproving() {
     this.setImage(0);
+    this.setMoodMessage(0);
+    this.setMoodColor(1);
   }
-
+  
   initState() {
     this.state = +JSON.parse(localStorage.getItem('hamtaroState'));
     if (this.state == null) {
@@ -73,11 +91,19 @@ export class HamtaroComponent extends AbstractCreatureComponent implements OnIni
       localStorage.setItem('hamtaroState', JSON.stringify(this.state));
     }
     this.setImage(1);
+    this.moodMessage = '';
   }
 
   setImage(index: number) {
     console.log('image change ' + index);
     this.imagePath = this.images[index];
   }
-
+  
+  setMoodMessage(index: number) {
+    this.moodMessage = this.moodMessages[index];
+  }
+  
+  setMoodColor(index: number) {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = this.colors[index];
+  }
 }
