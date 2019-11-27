@@ -20,11 +20,11 @@ export class HamtaroComponent extends AbstractCreatureComponent implements OnIni
     '../../../assets/HamtaroSad.jpeg'
   ];
 
-  moodMessages = [ 
+  moodMessages = [
     'Hamtaro a bien mangé',
-    'Hamtaro en prends bonne note',
+    'Hamtaro en prend bonne note',
     'Quelqu\'un a parlé de RGPD à Hamtaro'
-  ]
+  ];
 
   colors = [
     '#CBFFC0',
@@ -40,6 +40,7 @@ export class HamtaroComponent extends AbstractCreatureComponent implements OnIni
 
   ngOnInit() {
     this.initState();
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#000000';
   }
 
   onCheckHamtaroState() {
@@ -47,11 +48,11 @@ export class HamtaroComponent extends AbstractCreatureComponent implements OnIni
     if (storedState == null) {
       this.initState();
     } else {
-      
+
       const newState = this.creatureService.getState(this.creatureName);
-      if (storedState > newState) {
+      if (storedState < newState) {
         this.onStateImproving();
-      } else if (storedState < newState) {
+      } else if (storedState > newState) {
         this.onStateWorsen();
       } else {
         this.onStageStagnation();
@@ -71,19 +72,19 @@ export class HamtaroComponent extends AbstractCreatureComponent implements OnIni
     this.setMoodMessage(1);
     this.setMoodColor(1);
   }
-  
+
   onStateWorsen() {
     this.setImage(2);
     this.setMoodMessage(2);
-    this.setMoodColor(1);
+    this.setMoodColor(2);
   }
-  
+
   onStateImproving() {
     this.setImage(0);
     this.setMoodMessage(0);
-    this.setMoodColor(1);
+    this.setMoodColor(0);
   }
-  
+
   initState() {
     this.state = +JSON.parse(localStorage.getItem('hamtaroState'));
     if (this.state == null) {
@@ -98,11 +99,11 @@ export class HamtaroComponent extends AbstractCreatureComponent implements OnIni
     console.log('image change ' + index);
     this.imagePath = this.images[index];
   }
-  
+
   setMoodMessage(index: number) {
     this.moodMessage = this.moodMessages[index];
   }
-  
+
   setMoodColor(index: number) {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = this.colors[index];
   }

@@ -1,3 +1,25 @@
-<p>
-  rhinoferos works!
-</p>
+<hr>
+
+<div>
+  <h2>
+    Bienvenue chez Rhinoféros!
+  </h2>
+  <p [style.color]="fontColor">
+    Bonheur de Rhinoféros: {{ state }}
+  </p>
+</div>
+
+<img height="300px" src="{{ imagePath }}" />
+
+<div>
+  <b>{{ moodMessage }}</b>
+</div>
+<div *ngIf="isStagnating">
+  mais Rhinoféros n'aime pas beaucoup la stagnation...
+</div>
+
+<hr>
+
+<div>
+  <button (click) = "onCheckRhinoferosState()"> Consulter </button>
+</div>

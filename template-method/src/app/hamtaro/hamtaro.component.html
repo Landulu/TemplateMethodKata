@@ -1,8 +1,9 @@
+<hr>
 
 <div>
-  <p>
+  <h2>
     Bienvenue chez Hamtaro!
-  </p>
+  </h2>
   <p>
     Bonheur de Hamtaro: {{ state }}
   </p>
@@ -11,8 +12,10 @@
 <img height="300px" src="{{ imagePath }}" />
 
 <div>
-  {{ moodMessage }}
+  <b ngStyle >{{ moodMessage }}</b>
 </div>
+
+<hr>
 
 <div>
   <button (click) = "onCheckHamtaroState()"> Consulter </button>
