@@ -40,7 +40,7 @@ export class HamtaroComponent extends AbstractCreatureComponent implements OnIni
 
   ngOnInit() {
     this.initState();
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#000000';
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#FFFFFF';
   }
 
   onCheckHamtaroState() {
